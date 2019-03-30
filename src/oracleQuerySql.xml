@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<select id="queryTableSql">
+		select * from user_tables t where 
+		 t.table_name=?
+	</select>
+	<select id="queryTableInfoSql">
+		SELECT USER_TAB_COLS.TABLE_NAME as
+		tableName,USER_TAB_COLS.COLUMN_NAME as columnName,
+		USER_TAB_COLS.DATA_TYPE as dataType,
+		USER_TAB_COLS.DATA_LENGTH as
+		dataLength,
+		USER_TAB_COLS.NULLABLE as isNUll,
+		USER_TAB_COLS.COLUMN_ID as
+		colId,
+		user_col_comments.comments as comments
+		FROM USER_TAB_COLS
+		inner join
+		user_col_comments on user_col_comments.TABLE_NAME =
+		USER_TAB_COLS.TABLE_NAME
+		and user_col_comments.COLUMN_NAME =
+		USER_TAB_COLS.COLUMN_NAME
+		and USER_TAB_COLS.TABLE_NAME =?
+	</select>
+</root>
